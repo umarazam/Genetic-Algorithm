@@ -5,6 +5,7 @@ class population:
 	def initializePopulation(self):
 		for i in range(self.size):
 			self.ind.append((Individual.individual()))
+			self.ind[i].getfitness()
 
 	def printPop(self):
 		for i in range(self.size):
@@ -13,7 +14,7 @@ class population:
 	def calc_MostFit(self):
 		minfit=-1
 		for i in range(self.size):
-			temp=self.ind[i].getfitness()
+			temp=self.ind[i].fitness
 			if temp > minfit:
 				minfit =temp 
 				index = i
@@ -22,18 +23,20 @@ class population:
 	def calc_MinFit(self):
 		maxfit=111
 		for i in range(self.size):
-			temp=self.ind[i].getfitness()
+			temp=self.ind[i].fitness
 			if temp < maxfit:
 				maxfit =temp 
 				index = i
 		return index 	
 	
 	def calc_Second_MostFit(self):
-		base = self.ind[0].getfitness()
-		second_fit=0
+		base = self.ind[0].fitness
+		second_fitIndex=base_index=0
 		for i in range(1,self.size):
-			temp = self.ind[i].getfitness()
+			temp = self.ind[i].fitness
 			if base < temp:
-				second_fit=i
-				base = temp	
-		return second_fit
+				second_fitIndex =base_index
+				base= temp	
+				base_index=i
+		return second_fitIndex
+# If the least value comes after the base or max value than no true value
