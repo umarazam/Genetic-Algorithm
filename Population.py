@@ -38,5 +38,9 @@ class population:
 				second_fitIndex =base_index
 				base= temp	
 				base_index=i
+			else:
+				fit_Value= self.ind[second_fitIndex].fitness
+				if temp > fit_Value:
+					second_fitIndex=i
 		return second_fitIndex
 # If the least value comes after the base or max value than no true value
