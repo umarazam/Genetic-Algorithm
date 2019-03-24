@@ -30,17 +30,18 @@ class population:
 		return index 	
 	
 	def calc_Second_MostFit(self):
-		base = self.ind[0].fitness
-		second_fitIndex=base_index=0
+		base_index=second_fitIndex=0
+		base = self.ind[base_index].fitness
 		for i in range(1,self.size):
 			temp = self.ind[i].fitness
 			if base < temp:
 				second_fitIndex =base_index
 				base= temp	
 				base_index=i
-			else:
-				fit_Value= self.ind[second_fitIndex].fitness
-				if temp > fit_Value:
-					second_fitIndex=i
+			elif base > temp and self.ind[second_fitIndex].fitness < temp:
+				second_fitIndex=i
+			elif base_index==second_fitIndex:
+				second_fitIndex=i
+
 		return second_fitIndex
 # If the least value comes after the base or max value than no true value
