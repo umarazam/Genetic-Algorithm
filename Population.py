@@ -1,47 +1,33 @@
-import Individual 
+from Individual import individual
+from Individual import target
+import random as rn
 class population:
-	size=10
-	ind=[]*size
+	popSize=500
+	generation=1
+	bestScore=0
 	def initializePopulation(self):
-		for i in range(self.size):
-			self.ind.append((Individual.individual()))
-			self.ind[i].getfitness()
+		self.pop=[]
+		for i in range(self.popSize):
+			self.pop.append(individual())
 
 	def printPop(self):
-		for i in range(self.size):
-			print(self.ind[i].genes)
+		for p in self.pop:
+			print(p.getContent())
 
-	def calc_MostFit(self):
-		minfit=-1
-		for i in range(self.size):
-			temp=self.ind[i].fitness
-			if temp > minfit:
-				minfit =temp 
-				index = i
-		return index 
-	
-	def calc_MinFit(self):
-		maxfit=111
-		for i in range(self.size):
-			temp=self.ind[i].fitness
-			if temp < maxfit:
-				maxfit =temp 
-				index = i
-		return index 	
-	
-	def calc_Second_MostFit(self):
-		base_index=second_fitIndex=0
-		base = self.ind[base_index].fitness
-		for i in range(1,self.size):
-			temp = self.ind[i].fitness
-			if base < temp:
-				second_fitIndex =base_index
-				base= temp	
-				base_index=i
-			elif base > temp and self.ind[second_fitIndex].fitness < temp:
-				second_fitIndex=i
-			elif base_index==second_fitIndex:
-				second_fitIndex=i
+	def matingPool1(self,parents):
+		self.matingPool=[]
+		for i in range(self.popSize):
+			for j in range(parents[i].getfitness()):
+				self.matingPool.append(parents[i])
+		return self.matingPool
 
-		return second_fitIndex
-# If the least value comes after the base or max value than no true value
+	def selection(self):
+		self.x = rn.choice(range(len(self.matingPool)))
+		self.y = rn.choice(range(len(self.matingPool)))
+
+	def crossOver(self):
+		self.child = self.matingPool[self.x].crossOver(self.matingPool[self.y])
+
+	def mutate(self):
+		self.child.mutate()
+
