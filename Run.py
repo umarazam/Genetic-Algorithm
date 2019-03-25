@@ -1,6 +1,8 @@
 import Population as plt
 from Individual import target
 from helpers import summarize
+import time
+
 def main():
 	population = plt.population()
 	population.initializePopulation()
@@ -20,9 +22,10 @@ def main():
 			population.crossOver()
 			population.mutate()
 			population.pop.append(population.child)	
-	population.generation +=1
+		population.generation +=1
 
 if  __name__ == "__main__":
+	start = time.time()
 	main()
-
-
+	end = time.time()
+	print(f"Time: {end - start}")

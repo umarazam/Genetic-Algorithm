@@ -2,7 +2,7 @@ from Individual import individual
 from Individual import target
 import random as rn
 class population:
-	popSize=500
+	popSize=50000
 	generation=1
 	bestScore=0
 	def initializePopulation(self):
