@@ -5,12 +5,12 @@ def main():
 	population = plt.population()
 	population.initializePopulation()
 	while (population.bestScore < len(target)):
-		for i in range(len(target)):
+		for i in range(population.popSize):
 			population.pop[i].getfitness()
 
-		if population.pop[i].fitness > population.bestScore:
-			population.bestScore = population.pop[i].fitness
-			summarize(population.generation, population.pop[i].getContent(), population.bestScore)
+			if population.pop[i].fitness > population.bestScore:
+				population.bestScore = population.pop[i].fitness
+				summarize(population.generation, population.pop[i].getContent(), population.bestScore)
 			
 		parents = population.pop[:] # New Parents for next Generation
 		population.pop =[] # New Parent for next Generation
