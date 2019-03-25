@@ -1,5 +1,5 @@
 import random as rn
-target=[1,1,0,1,1,0,0,1,1,1,0,0,0,1,0,1]
+target=[1,0,0,1,0,1,0,1,0,1,0,1,0,1,0]
 class individual:
 	def __init__(self):
 		self.genes=[]
@@ -15,6 +15,7 @@ class individual:
 			if self.genes[i] == target[i]:
 				self.fitness +=1
 		return self.fitness	
+
 	def crossOver(self,patner):
 		self.child = individual()
 		for i in range(len((self.genes))):
